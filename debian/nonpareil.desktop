@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=HP Calculators Emulator
+GenericName=HP Calculators Emulator
+Comment=Use HP Calculators on your desktop
+TryExec=nonpareil
+Exec=nonpareil
+Icon=accessories-calculator
+Terminal=false
+Type=Application
+Categories=Applications;Office;
+StartupNotify=true

@@ -1,0 +1,17 @@
+Source: nonpareil
+Section: misc
+Priority: optional
+Maintainer: Jean Schurger <jean@schurger.org>
+Build-Depends: debhelper (>= 4.1.16), scons
+Standards-Version: 3.7.2
+
+Package: nonpareil
+Section: misc
+Priority: extra
+Architecture: any
+Depends: ${shlibs:Depends}, debconf | debconf-2.0
+Description: a calculator simulator
+ Nonpareil is a microcode-level simulator for electronic calculators.
+ Currently it is able to simulate some of the HP calculators introduced
+ between 1972 and 1982.
+ .

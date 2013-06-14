@@ -1,0 +1,58 @@
+#!/usr/bin/make -f
+
+SCONSFLAGS=prefix=/usr bindir=/usr/bin libdir=/usr/lib/nonpareil
+
+build:
+	dh_testdir
+	cat src/SConscript  | sed -e s/csim_env\ =\ nonpareil_env.Copy/csim_env\ =\ build_env.Copy/ >src/SConscript.new
+	mv -f src/SConscript src/SConscript.old
+	mv -f src/SConscript.new src/SConscript
+	scons $(SCONSFLAGS) destdir=`pwd`/debian/nonpareil
+
+clean:
+	dh_testdir
+	dh_testroot
+	dh_clean
+	rm -rvf build
+	rm -vf image/*.pnm
+	rm -vf .sconsign.dblite
+	rm -vf nonpareil.conf
+	rm -rvf win32
+	rm -rvf obj
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	scons $(SCONSFLAGS) destdir=`pwd`/debian/nonpareil install
+	mkdir -p `pwd`/debian/nonpareil/usr/share/applications
+	cp -f `pwd`/debian/nonpareil.desktop `pwd`/debian/nonpareil/usr/share/applications/nonpareil.desktop
+
+binary-indep: build install
+
+binary-arch: build install
+	dh_testdir
+	dh_testroot
+	dh_install
+#	dh_installmenu
+#	dh_installemacsen
+#	dh_installpam
+#	dh_installinit
+#	dh_installcron
+#	dh_installman 
+#	dh_installinfo
+#	dh_undocumented
+	dh_link
+	dh_strip
+	dh_compress
+	dh_fixperms
+	dh_makeshlibs -V
+	dh_installdeb
+#	dh_perl
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install configure

@@ -1,0 +1,11 @@
+nonpareil (0.79-0) karmic; urgency=low
+
+  * Upstream version
+
+ -- Jean Schurger <jean@schurger.org>  Thu, 06 Aug 2009 05:10:26 -0400
+
+nonpareil (0.78-0) unstable; urgency=low
+
+  * First Package.
+
+ -- Jean Schurger <jean@schurger.org>  Mon, 10 Mar 2008 14:10:00 +0100
